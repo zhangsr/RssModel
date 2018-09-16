@@ -26,6 +26,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':rsscommon')
-    implementation project(':rssbean')
+    implementation project(':common')
+    implementation project(':bean')
 }
