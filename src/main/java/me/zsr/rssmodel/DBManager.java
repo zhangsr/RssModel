@@ -3,6 +3,12 @@ package me.zsr.rssmodel;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import me.zsr.rssbean.ArticleDao;
+import me.zsr.rssbean.DaoMaster;
+import me.zsr.rssbean.DaoSession;
+import me.zsr.rssbean.DiscoverDao;
+import me.zsr.rssbean.SubscriptionDao;
+
 public class DBManager {
     private static final String DB_NAME = "rss";
     private static DaoSession sDaoSession;

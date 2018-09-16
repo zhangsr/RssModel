@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import me.zsr.rssbean.Article;
+import me.zsr.rssbean.ArticleDao;
 import me.zsr.rssbean.Subscription;
+import me.zsr.rssbean.SubscriptionDao;
 import me.zsr.rsscommon.ThreadManager;
 
 public class SubscriptionModel extends BaseModel implements ModelObserver<Article> {
