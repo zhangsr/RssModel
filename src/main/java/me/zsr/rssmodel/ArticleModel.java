@@ -48,6 +48,15 @@ public class ArticleModel extends BaseModel {
                 .orderDesc(ArticleDao.Properties.Published).list();
     }
 
+    public List<Article> queryAll() {
+        QueryBuilder qb = DBManager.getArticleDao().queryBuilder();
+        qb.where(ArticleDao.Properties.Trash.eq(false),
+                qb.or(ArticleDao.Properties.Favorite.eq(false),
+                        ArticleDao.Properties.Favorite.isNull()))
+                .orderDesc(ArticleDao.Properties.Published);
+        return qb.list();
+    }
+
     public void requestNetwork(final Subscription subscription) {
         LOG_MA("requestNetwork name=" + subscription.getTitle());
         if (subscription == null) {
