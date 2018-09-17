@@ -10,7 +10,8 @@ import me.zsr.rssbean.DiscoverDao;
 import me.zsr.rssbean.SubscriptionDao;
 
 public class DBManager {
-    private static final String DB_NAME = "rss";
+    // TODO: 2018/9/17 move biz to app
+    private static final String DB_NAME = "feeder";
     private static DaoSession sDaoSession;
 
     public static void init(Context context) {
