@@ -26,6 +26,10 @@ public class SubscriptionModel extends BaseModel implements ModelObserver<Articl
         insert(Arrays.asList(subscriptions));
     }
 
+    public void update(Subscription... subscriptions) {
+        update(Arrays.asList(subscriptions));
+    }
+
     public void loadAll() {
         ThreadManager.postInBackground(new Runnable() {
             @Override
@@ -62,6 +66,21 @@ public class SubscriptionModel extends BaseModel implements ModelObserver<Articl
                     @Override
                     public void run() {
                         notifyObservers(ModelAction.ADD, subscriptions);
+                    }
+                });
+            }
+        });
+    }
+
+    public void update(final List<Subscription> subscriptions) {
+        ThreadManager.postInBackground(new Runnable() {
+            @Override
+            public void run() {
+                DBManager.getSubscriptionDao().updateInTx(subscriptions);
+                ThreadManager.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyObservers(ModelAction.MODIFY, subscriptions);
                     }
                 });
             }
