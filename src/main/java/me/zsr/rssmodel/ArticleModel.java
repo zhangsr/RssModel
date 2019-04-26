@@ -169,4 +169,9 @@ public class ArticleModel extends BaseModel {
             }
         });
     }
+
+    public long countSync(long subscriptionId) {
+        return DBManager.getArticleDao().queryBuilder().where(
+                ArticleDao.Properties.SubscriptionId.eq(subscriptionId)).count();
+    }
 }
