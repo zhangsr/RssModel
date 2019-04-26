@@ -150,4 +150,23 @@ public class ArticleModel extends BaseModel {
             }
         });
     }
+
+    public void delete(Article... articles) {
+        delete(Arrays.asList(articles));
+    }
+
+    public void delete(final List<Article> articles) {
+        ThreadManager.postInBackground(new Runnable() {
+            @Override
+            public void run() {
+                DBManager.getArticleDao().deleteInTx(articles);
+                ThreadManager.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        notifyObservers(ModelAction.DELETE, articles);
+                    }
+                });
+            }
+        });
+    }
 }
