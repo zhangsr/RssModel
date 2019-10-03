@@ -15,7 +15,7 @@ public class DBManager {
     private static DaoSession sDaoSession;
 
     public static void init(Context context) {
-        DaoMaster.OpenHelper helper = new DaoMaster.OpenHelper(context, DB_NAME, null){};
+        MySQLiteOpenHelper helper = new MySQLiteOpenHelper(context, DB_NAME, null);
         SQLiteDatabase db = helper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);
         sDaoSession = daoMaster.newSession();

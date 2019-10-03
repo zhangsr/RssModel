@@ -146,7 +146,11 @@ public class ArticleModel extends BaseModel {
         ThreadManager.postInBackground(new Runnable() {
             @Override
             public void run() {
-                DBManager.getArticleDao().update(article);
+                if (DBManager.getArticleDao().hasKey(article)) {
+                    DBManager.getArticleDao().update(article);
+                } else {
+                    DBManager.getArticleDao().insert(article);
+                }
             }
         });
     }
