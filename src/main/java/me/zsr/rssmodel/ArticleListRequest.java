@@ -28,6 +28,10 @@ public class ArticleListRequest extends Request<List<Article>> {
         mSubscription = subscription;
     }
 
+    public ArticleListRequest(String url, Response.Listener<List<Article>> listener, Response.ErrorListener errorListener) {
+        this(Method.GET, url, errorListener, listener);
+    }
+
     private ArticleListRequest(int method, String url, Response.ErrorListener listener, Response.Listener<List<Article>> mListener) {
         super(method, url, listener);
         this.mListener = mListener;
@@ -52,7 +56,7 @@ public class ArticleListRequest extends Request<List<Article>> {
     }
 
     private void fillData(List<Article> list) {
-        if (list == null) {
+        if (list == null || mSubscription == null) {
             return;
         }
         for (Article article : list) {
@@ -71,7 +75,7 @@ public class ArticleListRequest extends Request<List<Article>> {
     public void deliverError(VolleyError error) {
         Log.d(TAG, "deliverError " + error);
 
-        if (error == null || error.networkResponse == null) {
+        if (error == null || error.networkResponse == null || mSubscription == null) {
             return;
         }
 
