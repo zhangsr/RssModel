@@ -86,7 +86,7 @@ public class ArticleModel extends BaseModel {
         if (articleList == null) {
             return;
         }
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 List<Article> dbArticleList = DBManager.getArticleDao().queryBuilder().where(
@@ -106,7 +106,7 @@ public class ArticleModel extends BaseModel {
     }
 
     public void markRead(final boolean read, final long subscriptionId) {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 markRead(read, queryBySubscriptionIdSync(subscriptionId));
@@ -127,7 +127,7 @@ public class ArticleModel extends BaseModel {
         if (articleList == null || articleList.size() == 0) {
             return;
         }
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 for (Article article : articleList) {
@@ -143,7 +143,7 @@ public class ArticleModel extends BaseModel {
         if (article == null) {
             return;
         }
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 if (DBManager.getArticleDao().hasKey(article)) {
@@ -160,7 +160,7 @@ public class ArticleModel extends BaseModel {
     }
 
     public void delete(final List<Article> articles) {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 DBManager.getArticleDao().deleteInTx(articles);

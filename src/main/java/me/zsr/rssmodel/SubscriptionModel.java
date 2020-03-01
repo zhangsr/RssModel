@@ -31,7 +31,7 @@ public class SubscriptionModel extends BaseModel implements ModelObserver<Articl
     }
 
     public void loadAll() {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 final List<Subscription> list = DBManager.getSubscriptionDao().queryBuilder().list();
@@ -58,7 +58,7 @@ public class SubscriptionModel extends BaseModel implements ModelObserver<Articl
     }
 
     public void insert(final List<Subscription> subscriptions) {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 DBManager.getSubscriptionDao().insertOrReplaceInTx(subscriptions);
@@ -73,7 +73,7 @@ public class SubscriptionModel extends BaseModel implements ModelObserver<Articl
     }
 
     public void update(final List<Subscription> subscriptions) {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 DBManager.getSubscriptionDao().updateInTx(subscriptions);
@@ -137,7 +137,7 @@ public class SubscriptionModel extends BaseModel implements ModelObserver<Articl
     }
 
     public void delete(final List<Subscription> subscriptions) {
-        ThreadManager.postInBackground(new Runnable() {
+        ThreadManager.execute(new Runnable() {
             @Override
             public void run() {
                 for (Subscription subscription : subscriptions)  {
