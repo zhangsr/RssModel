@@ -19,7 +19,7 @@ import me.zsr.rsscommon.DateUtil;
 import me.zsr.rsscommon.StringUtil;
 
 public class ClickedArticleRequest extends Request<String> {
-    private static final String URL = "http://zhangshaoru.pythonanywhere.com/clicked_article/?format=json";
+    private static final String URL = "http://8.129.172.198:8000/clicked_article/?format=json";
     private Article mArticle;
     private Subscription mSubscription;
 

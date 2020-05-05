@@ -24,7 +24,7 @@ import me.zsr.rsscommon.VolleySingleton;
 public class SInfoListRequest extends Request<List<Article>> {
     private static final String TAG = SInfoListRequest.class.getSimpleName();
     private final Response.Listener<List<Article>> mListener;
-    private static final String URL = "http://zhangshaoru.pythonanywhere.com/article_flow/?format=json";
+    private static final String URL = "http://8.129.172.198:8000/article_flow/?format=json";
 
     public SInfoListRequest(Response.Listener<List<Article>> mListener, Response.ErrorListener listener) {
         super(Method.GET, URL, listener);
